@@ -37,5 +37,16 @@ namespace Raindrops_Tests
             string actual = Raindrop.Input(input);
             Assert.AreEqual("Plang", actual);
         }
+
+        [TestCase(7)]
+        [TestCase(14)]
+        [TestCase(28)]
+        [TestCase(49)]
+        [TestCase(56)]
+        public void OnlyDivisibleBy7(int input)
+        {
+            string actual = Raindrop.Input(input);
+            Assert.AreEqual("Plong", actual);
+        }
     }
 }
