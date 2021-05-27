@@ -125,5 +125,14 @@ namespace Raindrops_Tests
             string output = Raindrop.Input(input);
             Assert.IsTrue(output.Contains("Plang"));
         }
+
+        [Test]
+        public void RNGTest_PlongPresentInAnyNumberDivisibleBy7()
+        {
+            Random rng = new Random();
+            int input = 7 * rng.Next(-1000000, 1000000);
+            string output = Raindrop.Input(input);
+            Assert.IsTrue(output.Contains("Plong"));
+        }
     }
 }
