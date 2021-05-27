@@ -13,7 +13,7 @@ namespace Raindrops_Tests
         public void NotDivisibleBy3_5_Or7(int input, string expected)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(3)]
@@ -91,6 +91,20 @@ namespace Raindrops_Tests
         {
             string actual = Raindrop.Input(input);
             Assert.AreEqual("PlingPlangPlong", actual);
+        }
+
+        [Test]
+        public void RespondsToInt32MaxValue()
+        {
+            string actual = Raindrop.Input(int.MaxValue);
+            Assert.AreEqual("2147483647", actual);
+        }
+
+        [Test]
+        public void RespondsToInt32MinValue()
+        {
+            string actual = Raindrop.Input(int.MinValue);
+            Assert.AreEqual("-2147483648", actual);
         }
     }
 }
