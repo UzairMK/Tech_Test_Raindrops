@@ -6,9 +6,9 @@ namespace Raindrops_Tests
     public class Rainsdrop_Tests
     {
         [TestCase(1, "1")]
-        [TestCase(2, "2")]
+        [TestCase(-2, "-2")]
         [TestCase(4, "4")]
-        [TestCase(8, "8")]
+        [TestCase(-8, "-8")]
         [TestCase(11, "11")]
         public void NotDivisibleBy3_5_Or7(int input, string expected)
         {
@@ -17,9 +17,9 @@ namespace Raindrops_Tests
         }
 
         [TestCase(3)]
-        [TestCase(6)]
+        [TestCase(-6)]
         [TestCase(9)]
-        [TestCase(12)]
+        [TestCase(-12)]
         [TestCase(18)]
         public void OnlyDivisibleBy3(int input)
         {
@@ -28,9 +28,9 @@ namespace Raindrops_Tests
         }
 
         [TestCase(5)]
-        [TestCase(10)]
+        [TestCase(-10)]
         [TestCase(20)]
-        [TestCase(25)]
+        [TestCase(-25)]
         [TestCase(40)]
         public void OnlyDivisibleBy5(int input)
         {
@@ -39,9 +39,9 @@ namespace Raindrops_Tests
         }
 
         [TestCase(7)]
-        [TestCase(14)]
+        [TestCase(-14)]
         [TestCase(28)]
-        [TestCase(49)]
+        [TestCase(-49)]
         [TestCase(56)]
         public void OnlyDivisibleBy7(int input)
         {
@@ -50,9 +50,9 @@ namespace Raindrops_Tests
         }
 
         [TestCase(15)]
-        [TestCase(30)]
+        [TestCase(-30)]
         [TestCase(45)]
-        [TestCase(60)]
+        [TestCase(-60)]
         [TestCase(75)]
         public void DivisibleBy3And5ButNot7(int input)
         {
@@ -61,9 +61,9 @@ namespace Raindrops_Tests
         }
 
         [TestCase(21)]
-        [TestCase(42)]
+        [TestCase(-42)]
         [TestCase(63)]
-        [TestCase(84)]
+        [TestCase(-84)]
         [TestCase(126)]
         public void DivisibleBy3And7ButNot5(int input)
         {
@@ -72,9 +72,9 @@ namespace Raindrops_Tests
         }
 
         [TestCase(35)]
-        [TestCase(70)]
+        [TestCase(-70)]
         [TestCase(140)]
-        [TestCase(175)]
+        [TestCase(-175)]
         [TestCase(245)]
         public void DivisibleBy5And7ButNot3(int input)
         {
@@ -83,9 +83,9 @@ namespace Raindrops_Tests
         }
 
         [TestCase(0)]
-        [TestCase(105)]
+        [TestCase(-105)]
         [TestCase(210)]
-        [TestCase(315)]
+        [TestCase(-315)]
         [TestCase(420)]
         public void DivisibleBy3_5And7(int input)
         {
