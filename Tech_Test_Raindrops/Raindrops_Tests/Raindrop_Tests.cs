@@ -48,5 +48,16 @@ namespace Raindrops_Tests
             string actual = Raindrop.Input(input);
             Assert.AreEqual("Plong", actual);
         }
+
+        [TestCase(15)]
+        [TestCase(30)]
+        [TestCase(45)]
+        [TestCase(60)]
+        [TestCase(75)]
+        public void DivisibleBy3And5ButNot7(int input)
+        {
+            string actual = Raindrop.Input(input);
+            Assert.AreEqual("PlingPlang", actual);
+        }
     }
 }
