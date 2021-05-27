@@ -50,9 +50,15 @@ public static string Input(int number)
 
 ### Tests
 
+I created a NUnit project in the same solution, to write and execute my tests. The aim of the tests was to make sure the created function was doing what I wanted it to do. I performed three sets of test which I will describe below.
+
 
 
 #### General value tests
+
+The aim of the tests in this set is to make sure the desired output is obtained when the input follows a certain rule.
+
+##### Tests
 
 - NotDivisibleBy3_5_Or7
 - OnlyDivisibleBy3
@@ -63,19 +69,68 @@ public static string Input(int number)
 - DivisibleBy5And7ButNot3
 - DivisibleBy3_5And7
 
+##### Example
+
+```csharp
+[TestCase(1, "1")]
+[TestCase(-2, "-2")]
+[TestCase(4, "4")]
+[TestCase(-8, "-8")]
+[TestCase(11, "11")]
+public void NotDivisibleBy3_5_Or7(int input, string expected)
+{
+	string actual = Raindrop.Input(input);
+	Assert.AreEqual(expected, actual);
+}
+```
+
 
 
 #### Boundary value tests
 
+The aim of the tests in this set is to make sure the function can handle the maximum and minimum value of the possible inputs.
+
+##### Tests
+
 - RespondsToInt32MaxValue
 - RespondsToInt32MinValue
+
+##### Example
+
+```csharp
+[Test]
+public void RespondsToInt32MaxValue()
+{
+	string actual = Raindrop.Input(int.MaxValue);
+	Assert.AreEqual("2147483647", actual);
+}
+```
 
 
 
 #### Presence of string tests
+
+The aim of the tests in this set is to make sure if a number is divisible by 3, 5 or 7, that the output string contains their associated text regardless of what other information might be in the string. It also makes sure that "Pling" and "Plang" are always next to each other if both are present and the same with "Plang" and "Plong".
+
+##### Tests
 
 - PlingPresentInAnyNumberDivisibleBy3
 - PlangPresentInAnyNumberDivisibleBy5
 - PlongPresentInAnyNumberDivisibleBy7
 - PlingPlangPresentInAnyNumberDivisibleBy3And5
 - PlangPlongPresentInAnyNumberDivisibleBy5And7
+
+##### Example
+
+```csharp
+[TestCase(3)]
+[TestCase(-15)]
+[TestCase(21)]
+[TestCase(-105)]
+public void PlingPresentInAnyNumberDivisibleBy3(int input)
+{
+	string output = Raindrop.Input(input);
+	Assert.IsTrue(output.Contains("Pling"));
+}
+```
+
