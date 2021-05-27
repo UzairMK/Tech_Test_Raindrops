@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using RaindropsLib;
+using System;
 
 namespace Raindrops_Tests
 {
@@ -105,6 +106,15 @@ namespace Raindrops_Tests
         {
             string actual = Raindrop.Input(int.MinValue);
             Assert.AreEqual("-2147483648", actual);
+        }
+
+        [Test]
+        public void RNGTest_PlingPresentInAnyNumberDivisibleBy3()
+        {
+            Random rng = new Random();
+            int input = 3 * rng.Next(-1000000, 1000000);
+            string output = Raindrop.Input(input);
+            Assert.IsTrue(output.Contains("Pling"));
         }
     }
 }
