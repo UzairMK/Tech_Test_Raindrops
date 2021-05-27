@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using RaindropsLib;
-using System;
 
 namespace Raindrops_Tests
 {
