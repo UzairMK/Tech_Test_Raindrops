@@ -108,31 +108,54 @@ namespace Raindrops_Tests
             Assert.AreEqual("-2147483648", actual);
         }
 
-        [Test]
-        public void RNGTest_PlingPresentInAnyNumberDivisibleBy3()
+        [TestCase(3)]
+        [TestCase(-15)]
+        [TestCase(21)]
+        [TestCase(-105)]
+        public void PlingPresentInAnyNumberDivisibleBy3(int input)
         {
-            Random rng = new Random();
-            int input = 3 * rng.Next(-1000000, 1000000);
             string output = Raindrop.Input(input);
             Assert.IsTrue(output.Contains("Pling"));
         }
 
-        [Test]
-        public void RNGTest_PlangPresentInAnyNumberDivisibleBy5()
+        [TestCase(5)]
+        [TestCase(-15)]
+        [TestCase(35)]
+        [TestCase(-105)]
+        public void PlangPresentInAnyNumberDivisibleBy5(int input)
         {
-            Random rng = new Random();
-            int input = 5 * rng.Next(-1000000, 1000000);
             string output = Raindrop.Input(input);
             Assert.IsTrue(output.Contains("Plang"));
         }
 
-        [Test]
-        public void RNGTest_PlongPresentInAnyNumberDivisibleBy7()
+        [TestCase(7)]
+        [TestCase(-21)]
+        [TestCase(35)]
+        [TestCase(-105)]
+        public void PlongPresentInAnyNumberDivisibleBy7(int input)
         {
-            Random rng = new Random();
-            int input = 7 * rng.Next(-1000000, 1000000);
             string output = Raindrop.Input(input);
             Assert.IsTrue(output.Contains("Plong"));
+        }
+
+        [TestCase(15)]
+        [TestCase(-105)]
+        [TestCase(-120)]
+        [TestCase(210)]
+        public void PlingPlangPresentInAnyNumberDivisibleBy3And5(int input)
+        {
+            string output = Raindrop.Input(input);
+            Assert.IsTrue(output.Contains("PlingPlang"));
+        }
+
+        [TestCase(35)]
+        [TestCase(-105)]
+        [TestCase(-140)]
+        [TestCase(210)]
+        public void PlangPlongPresentInAnyNumberDivisibleBy5And7(int input)
+        {
+            string output = Raindrop.Input(input);
+            Assert.IsTrue(output.Contains("PlangPlong"));
         }
     }
 }
