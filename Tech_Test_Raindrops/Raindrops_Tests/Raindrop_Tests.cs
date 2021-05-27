@@ -116,5 +116,14 @@ namespace Raindrops_Tests
             string output = Raindrop.Input(input);
             Assert.IsTrue(output.Contains("Pling"));
         }
+
+        [Test]
+        public void RNGTest_PlangPresentInAnyNumberDivisibleBy5()
+        {
+            Random rng = new Random();
+            int input = 5 * rng.Next(-1000000, 1000000);
+            string output = Raindrop.Input(input);
+            Assert.IsTrue(output.Contains("Plang"));
+        }
     }
 }
