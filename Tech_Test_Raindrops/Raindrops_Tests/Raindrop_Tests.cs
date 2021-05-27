@@ -15,5 +15,16 @@ namespace Raindrops_Tests
             string actual = Raindrop.Input(input);
             Assert.AreEqual(expected,actual);
         }
+
+        [TestCase(3)]
+        [TestCase(6)]
+        [TestCase(9)]
+        [TestCase(12)]
+        [TestCase(18)]
+        public void OnlyDivisibleBy3(int input)
+        {
+            string actual = Raindrop.Input(input);
+            Assert.AreEqual("Pling", actual);
+        }
     }
 }
