@@ -13,7 +13,7 @@ Examples
 - 30's factors are 1, 2, 3, 5, 6, 10, 15, 30: this would be a 'PlingPlang'
 - 34 has four factors: 1, 2, 17, and 34: this would be '34'
 
-Create tests that cover your expected range of inputs and outputs.
+Also create tests that cover the expected range of inputs and outputs.
 
 
 
@@ -48,24 +48,24 @@ public static string Input(int number)
 
 ### Tests
 
-I created a NUnit project in the same solution, to write and execute my tests. This project contained the following NuGet packages: Microsoft.NET.Test.Sdk, NUnit, and NUnit3TestAdapter. The aim of the tests was to make sure the created function was doing what I wanted it to do. I performed three sets of tests which I will describe below.
+I created a NUnit project in the same solution, to write and execute my tests. This project was made dependent to the `RaindropLib` class library to gain access to the `Raindrop` class and the project also contained the following NuGet packages: Microsoft.NET.Test.Sdk, NUnit, and NUnit3TestAdapter. The aim of the tests was to make sure the created function was doing what I wanted it to do. I performed three sets of tests which I will describe below and all the tests were design to be DAMP (Descriptive And Meaningful Phrases) so they could easily be understood by anyone.
 
 
 
-#### General value tests
+#### General tests
 
 The aim of the tests in this set is to make sure the desired output is obtained when the input follows a certain rule.
 
 ##### Tests
 
-- NotDivisibleBy3_5_Or7
-- OnlyDivisibleBy3
-- OnlyDivisibleBy5
-- OnlyDivisibleBy7
-- DivisibleBy3And5ButNot7
-- DivisibleBy3And7ButNot5
-- DivisibleBy5And7ButNot3
-- DivisibleBy3_5And7
+- NotDivisibleBy3_5_Or7_ReturnsNumberAsString
+- DivisibleBy3ButNotBy5And7_ReturnsPling
+- DivisibleBy5ButNotBy3And7_ReturnsPlang
+- DivisibleBy7ButNotBy3And5_ReturnsPlong
+- DivisibleBy3And5ButNot7_ReturnsPlingPlang
+- DivisibleBy3And7ButNot5_ReturnsPlingPlong
+- DivisibleBy5And7ButNot3_ReturnsPlangPlong
+- DivisibleBy3_5And7_ReturnsPlingPlangPlong
 
 ##### Example
 
@@ -75,7 +75,7 @@ The aim of the tests in this set is to make sure the desired output is obtained 
 [TestCase(4, "4")]
 [TestCase(-8, "-8")]
 [TestCase(11, "11")]
-public void NotDivisibleBy3_5_Or7(int input, string expected)
+public void NotDivisibleBy3_5_Or7_ReturnsNumberAsString(int input, string expected)
 {
 	string actual = Raindrop.Input(input);
 	Assert.That(expected, Is.EqualTo(actual));
@@ -86,18 +86,18 @@ public void NotDivisibleBy3_5_Or7(int input, string expected)
 
 #### Boundary value tests
 
-The aim of the tests in this set is to make sure the function can handle the maximum and minimum value of the input.
+The aim of the tests in this set is to make sure the function can handle the maximum and minimum value of the input. The maximum and minimum values of int32 are not divisible by 3, 5 or 7, so the function should return the number as a string.
 
 ##### Tests
 
-- RespondsToInt32MaxValue
-- RespondsToInt32MinValue
+- RespondsToInt32MaxValue_ReturnsInt32MaxValueAsString
+- RespondsToInt32MinValue_ReturnsInt32MinValueAsString
 
 ##### Example
 
 ```csharp
 [Test]
-public void RespondsToInt32MaxValue()
+public void RespondsToInt32MaxValue_ReturnsInt32MaxValueAsString()
 {
 	string actual = Raindrop.Input(int.MaxValue);
 	Assert.That("2147483647", Is.EqualTo(actual));
@@ -106,17 +106,17 @@ public void RespondsToInt32MaxValue()
 
 
 
-#### Presence of string tests
+#### Presence of text tests
 
 The aim of the tests in this set is to make sure if a number is divisible by 3, 5 or 7, that the output string contains their associated text regardless of what other information might be in the string. It also makes sure that "Pling" and "Plang" are always next to each other if both are present and the same with "Plang" and "Plong".
 
 ##### Tests
 
-- PlingPresentInAnyNumberDivisibleBy3
-- PlangPresentInAnyNumberDivisibleBy5
-- PlongPresentInAnyNumberDivisibleBy7
-- PlingPlangPresentInAnyNumberDivisibleBy3And5
-- PlangPlongPresentInAnyNumberDivisibleBy5And7
+- PlingPresentInAnyNumberDivisibleBy3_ReturnedStringContainsPling
+- PlangPresentInAnyNumberDivisibleBy5_ReturnedStringContainsPlang
+- PlongPresentInAnyNumberDivisibleBy7_ReturnedStringContainsPlong
+- PlingPlangPresentInAnyNumberDivisibleBy3And5_ReturnedStringContainsPlingPlang
+- PlangPlongPresentInAnyNumberDivisibleBy5And7_ReturnedStringContainsPlangPlong
 
 ##### Example
 
@@ -125,7 +125,7 @@ The aim of the tests in this set is to make sure if a number is divisible by 3, 
 [TestCase(-15)]
 [TestCase(21)]
 [TestCase(-105)]
-public void PlingPresentInAnyNumberDivisibleBy3(int input)
+public void PlingPresentInAnyNumberDivisibleBy3_ReturnedStringContainsPling(int input)
 {
 	string output = Raindrop.Input(input);
 	Assert.That(output.Contains("Pling"), Is.True);
