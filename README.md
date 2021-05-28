@@ -15,17 +15,15 @@ Examples
 
 Create tests that cover your expected range of inputs and outputs.
 
-You will be assessed on the quality of your code, functional correctness, and your approach to quality assurance and testing.
-
 
 
 ## Outcome
 
 ### Function
 
-Creating the function was very simple. I created a class library called `RaindropLib` and created a static `Raindrop` class inside it with one static function called `Input` shown below. The `Input` function takes a int32 as an input parameter and the function returns a string. 
+Creating the function was very simple. I created a class library called `RaindropLib` and created a static `Raindrop` class inside it with one static function called `Input` shown below. The `Input` function takes a int32 as an input parameter and returns a string. 
 
-In the function, an output string is initialised with an empty string. If the input number is divisible by 3, "Pling" is appended onto the output string. If the input number is divisible by 5, "Plang" is appended onto the output string. If the input number is divisible by 7, "Plong" is appended onto the output string. To find out if a number is divisible by another number, the modulo operator is used which will equal 0 if it is divisible.
+In the function, an output string is initialised with an empty string. I know a number is a factor of another number if it is divisible by the number. If the input number is divisible by 3 (meaning 3 is a factor), "Pling" is appended onto the output string. If the input number is divisible by 5 (meaning 5 is a factor), "Plang" is appended onto the output string. If the input number is divisible by 7 (meaning 7 is a factor), "Plong" is appended onto the output string. To find out if a number is divisible by another number, the modulo operator is used which will equal 0 if it is divisible.
 
 At the end of the function, if the output string is still an empty string, then this means the input number was not divisible by 3, 5 or 7 and the function should return the input number as a string as specified in the objective. If the output string is not an empty string, that means the input number was divisible by 3, 5 or 7 and the function will return the output string.
 
@@ -50,7 +48,7 @@ public static string Input(int number)
 
 ### Tests
 
-I created a NUnit project in the same solution, to write and execute my tests. The aim of the tests was to make sure the created function was doing what I wanted it to do. I performed three sets of test which I will describe below.
+I created a NUnit project in the same solution, to write and execute my tests. This project contained the following NuGet packages: Microsoft.NET.Test.Sdk, NUnit, and NUnit3TestAdapter. The aim of the tests was to make sure the created function was doing what I wanted it to do. I performed three sets of tests which I will describe below.
 
 
 
@@ -80,7 +78,7 @@ The aim of the tests in this set is to make sure the desired output is obtained 
 public void NotDivisibleBy3_5_Or7(int input, string expected)
 {
 	string actual = Raindrop.Input(input);
-	Assert.AreEqual(expected, actual);
+	Assert.That(expected, Is.EqualTo(actual));
 }
 ```
 
@@ -88,7 +86,7 @@ public void NotDivisibleBy3_5_Or7(int input, string expected)
 
 #### Boundary value tests
 
-The aim of the tests in this set is to make sure the function can handle the maximum and minimum value of the possible inputs.
+The aim of the tests in this set is to make sure the function can handle the maximum and minimum value of the input.
 
 ##### Tests
 
@@ -102,7 +100,7 @@ The aim of the tests in this set is to make sure the function can handle the max
 public void RespondsToInt32MaxValue()
 {
 	string actual = Raindrop.Input(int.MaxValue);
-	Assert.AreEqual("2147483647", actual);
+	Assert.That("2147483647", Is.EqualTo(actual));
 }
 ```
 
@@ -130,7 +128,7 @@ The aim of the tests in this set is to make sure if a number is divisible by 3, 
 public void PlingPresentInAnyNumberDivisibleBy3(int input)
 {
 	string output = Raindrop.Input(input);
-	Assert.IsTrue(output.Contains("Pling"));
+	Assert.That(output.Contains("Pling"), Is.True);
 }
 ```
 

@@ -13,7 +13,7 @@ namespace Raindrops_Tests
         public void NotDivisibleBy3_5_Or7(int input, string expected)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual(expected, actual);
+            Assert.That(expected, Is.EqualTo(actual));
         }
 
         [TestCase(3)]
@@ -24,7 +24,7 @@ namespace Raindrops_Tests
         public void OnlyDivisibleBy3(int input)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual("Pling", actual);
+            Assert.That("Pling", Is.EqualTo(actual));
         }
 
         [TestCase(5)]
@@ -35,7 +35,7 @@ namespace Raindrops_Tests
         public void OnlyDivisibleBy5(int input)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual("Plang", actual);
+            Assert.That("Plang", Is.EqualTo(actual));
         }
 
         [TestCase(7)]
@@ -46,7 +46,7 @@ namespace Raindrops_Tests
         public void OnlyDivisibleBy7(int input)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual("Plong", actual);
+            Assert.That("Plong", Is.EqualTo(actual));
         }
 
         [TestCase(15)]
@@ -57,7 +57,7 @@ namespace Raindrops_Tests
         public void DivisibleBy3And5ButNot7(int input)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual("PlingPlang", actual);
+            Assert.That("PlingPlang", Is.EqualTo(actual));
         }
 
         [TestCase(21)]
@@ -68,7 +68,7 @@ namespace Raindrops_Tests
         public void DivisibleBy3And7ButNot5(int input)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual("PlingPlong", actual);
+            Assert.That("PlingPlong", Is.EqualTo(actual));
         }
 
         [TestCase(35)]
@@ -79,7 +79,7 @@ namespace Raindrops_Tests
         public void DivisibleBy5And7ButNot3(int input)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual("PlangPlong", actual);
+            Assert.That("PlangPlong", Is.EqualTo(actual));
         }
 
         [TestCase(0)]
@@ -90,21 +90,21 @@ namespace Raindrops_Tests
         public void DivisibleBy3_5And7(int input)
         {
             string actual = Raindrop.Input(input);
-            Assert.AreEqual("PlingPlangPlong", actual);
+            Assert.That("PlingPlangPlong", Is.EqualTo(actual));
         }
 
         [Test]
         public void RespondsToInt32MaxValue()
         {
             string actual = Raindrop.Input(int.MaxValue);
-            Assert.AreEqual("2147483647", actual);
+            Assert.That("2147483647", Is.EqualTo(actual));
         }
 
         [Test]
         public void RespondsToInt32MinValue()
         {
             string actual = Raindrop.Input(int.MinValue);
-            Assert.AreEqual("-2147483648", actual);
+            Assert.That("-2147483648", Is.EqualTo(actual));
         }
 
         [TestCase(3)]
@@ -114,7 +114,7 @@ namespace Raindrops_Tests
         public void PlingPresentInAnyNumberDivisibleBy3(int input)
         {
             string output = Raindrop.Input(input);
-            Assert.IsTrue(output.Contains("Pling"));
+            Assert.That(output.Contains("Pling"), Is.True);
         }
 
         [TestCase(5)]
@@ -124,7 +124,7 @@ namespace Raindrops_Tests
         public void PlangPresentInAnyNumberDivisibleBy5(int input)
         {
             string output = Raindrop.Input(input);
-            Assert.IsTrue(output.Contains("Plang"));
+            Assert.That(output.Contains("Plang"), Is.True);
         }
 
         [TestCase(7)]
@@ -134,7 +134,7 @@ namespace Raindrops_Tests
         public void PlongPresentInAnyNumberDivisibleBy7(int input)
         {
             string output = Raindrop.Input(input);
-            Assert.IsTrue(output.Contains("Plong"));
+            Assert.That(output.Contains("Plong"), Is.True);
         }
 
         [TestCase(15)]
@@ -144,7 +144,7 @@ namespace Raindrops_Tests
         public void PlingPlangPresentInAnyNumberDivisibleBy3And5(int input)
         {
             string output = Raindrop.Input(input);
-            Assert.IsTrue(output.Contains("PlingPlang"));
+            Assert.That(output.Contains("PlingPlang"), Is.True);
         }
 
         [TestCase(35)]
@@ -154,7 +154,7 @@ namespace Raindrops_Tests
         public void PlangPlongPresentInAnyNumberDivisibleBy5And7(int input)
         {
             string output = Raindrop.Input(input);
-            Assert.IsTrue(output.Contains("PlangPlong"));
+            Assert.That(output.Contains("PlangPlong"), Is.True);
         }
     }
 }
